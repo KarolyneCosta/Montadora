@@ -1,0 +1,27 @@
+﻿@model Montadora.Models.Cidade
+@{
+    ViewBag.Title = "Buscar Cidades";
+}
+<h2>Buscar Cidades</h2>
+<hr />
+<div>
+    @Html.ActionLink(" ", "Novo", null, new { @class = "btn btn-primary glyphicon glyphicon-plus" })
+</div>
+<br />
+<h3>Selecione um Estado</h3>
+<div>
+    @Html.EnumDropDownListFor(model => model.Estado, new { @class = "form-control" })
+</div>
+<div id="cidadesDoEstado">
+
+</div>
+
+@section scripts{
+    <script>
+        $("#Estado").on("change", function () {
+            var resultado = $(this).val();
+
+            $("#cidadesDoEstado").load('@Url.Action("Listar", "Cidade")', { estado: resultado })
+        });
+    </script>
+}

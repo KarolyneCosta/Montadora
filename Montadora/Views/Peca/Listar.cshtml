@@ -1,0 +1,35 @@
+﻿@model Montadora.Models.Peca
+@{
+    ViewBag.Title = "Buscar Peças";
+}
+
+<h3> Buscar Peças</h3>
+<hr />
+<div class="form-group">
+    <p>
+        @Html.ActionLink(" ", "Novo", null, new { @class = " glyphicon glyphicon-plus btn btn-primary" })
+    </p>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-3">
+        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+    </div>
+    <div class="col-lg-offset-3">
+        <button type="submit" id="buscar" class="btn btn-primary"><i class=" glyphicon glyphicon-search"></i></button>
+    </div>
+</div>
+<hr />
+<div id="listaDePecas">
+
+</div>
+
+@section scripts{
+    <script>
+        $("#buscar").on("click", function () {
+            var resultado = $("#Descricao").val();
+
+            $("#listaDePecas").load('@Url.Action("Listar","Peca")', { descricao: resultado })
+        });
+    </script>
+}

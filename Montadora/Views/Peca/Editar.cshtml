@@ -1,0 +1,36 @@
+﻿@model Montadora.Models.Peca
+@{
+    ViewBag.Title = "Editar Peça";
+}
+<h2>Editar Peça</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model=>model.PecaId)
+    <div class="form-group">
+        @Html.DisplayName("Fornecedor")
+        @Html.DropDownListFor(model => model.ObjFornecedor.Id, ViewBag.Fornecedor as SelectList, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Descricao)
+        @Html.EditorFor(model => model.Descricao, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.DataFabricacao)
+        @Html.EditorFor(model => model.DataFabricacao, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.NumeroDeSerie)
+        @Html.EditorFor(model => model.NumeroDeSerie, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Valor)
+        @Html.EditorFor(model => model.Valor, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Salvar" class="btn btn-success" />
+        @Html.ActionLink("Cancelar", "Listar", "", new { @class = "btn btn-default" })
+    </div>
+}
+

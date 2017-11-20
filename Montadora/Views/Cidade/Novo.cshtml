@@ -1,0 +1,25 @@
+﻿@model Montadora.Models.Cidade
+@{
+    ViewBag.Title = "Nova Cidade";
+}
+
+<h2>Nova Cidade</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model=>model.Nome)
+        @Html.TextBoxFor(model=>model.Nome , new { @class="form-control", @Placeholder="Insira o nome da cidade..."})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Estado)
+        @Html.EnumDropDownListFor(model => model.Estado, new { @class = "form-control"})
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-1">
+            <input type="submit" value="Salvar" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "Listar", "", new { @class = "btn btn-default" })
+        </div>
+    </div>
+}
+

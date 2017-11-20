@@ -1,0 +1,23 @@
+﻿@model Montadora.Models.Peca
+@{
+    ViewBag.Title = "Excluir Peça";
+}
+<h2>Você deseja realmente excluir a Peça @Model.Descricao? </h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(id => id.PecaId)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao): @Model.Descricao
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumeroDeSerie): @Model.NumeroDeSerie
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-1">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            @Html.ActionLink("Cancelar", "Listar", "", new { @class = "btn btn-primary" })
+        </div>
+    </div>
+}
+

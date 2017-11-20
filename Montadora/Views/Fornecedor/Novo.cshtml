@@ -1,0 +1,30 @@
+﻿@model Montadora.Models.Fornecedor
+@{
+    ViewBag.Title = "Novo Fornecedor";
+}
+
+<h2>Nova Fornecedor</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome)
+        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cpf)
+        @Html.TextBoxFor(model => model.Cpf, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco)
+        @Html.TextBoxFor(model => model.Endereco, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-1">
+            <input type="submit" value="Salvar" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "Listar", "", new { @class = "btn btn-default" })
+        </div>
+    </div>
+}
+
+

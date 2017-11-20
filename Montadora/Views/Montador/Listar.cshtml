@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Montadora.Models.Montador>
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h3>Buscar Montadores</h3>
+<hr />
+<div class="col-md-offset-11">
+    <p>
+        @Html.ActionLink(" ", "Novo", null, new { @class = " glyphicon glyphicon-plus btn btn-primary", })
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <input type="text" name="nomeBusca" id="nomeBusca" class="form-control" placeholder="Informe o nome do montador..." />
+    </div>
+    <div class="col-lg-offset-3">
+        <button type="submit" id="buscar" onclick="click" class="btn btn-primary"><i class=" glyphicon glyphicon-search"></i></button>
+    </div>
+</div>
+
+<hr />
+<div id="listaMontador">
+
+</div>
+
+
+@section scripts{
+    <script>
+        $("#buscar").on("click", function () {
+            var resultado = $("#nomeBusca").val();
+
+            $("#listaMontador").load('@Url.Action("Listar","Montador")', { montador: resultado })
+        });
+    </script>
+}
+
