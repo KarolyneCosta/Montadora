@@ -1,0 +1,89 @@
+@model Montadora.Models.Veiculo
+@{
+    ViewBag.Title = "Novo Veículo";
+}
+<h2>Novo Veículo</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm())
+        {
+            <div class="col-md-12">
+                <div class="col-md-6 form-group">
+                    @Html.Label("Cliente")
+                    @Html.DropDownListFor(model => model.ObjCliente.Id, ViewBag.Cliente as SelectList, "Selecione um cliente...", new { @class = "form-control" })
+                </div>
+                <div class="col-md-6 form-group">
+                    @Html.Label("Montador")
+                    @Html.DropDownListFor(model => model.ObjMontador.Id, ViewBag.Montador as SelectList, "Selecione um montador...", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6 form-group">
+                    @Html.Label("Usuário")
+                    @Html.DropDownListFor(model => model.ObjUsuario.IdUsuario, ViewBag.Usuario as SelectList, "Selecione um usuário...", new { @class = "form-control" })
+                </div>
+                <div class="col-md-6 form-group">
+                    @Html.LabelFor(model => model.Modelo)
+                    @Html.TextBoxFor(model => model.Modelo, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6 form-group">
+                    @Html.LabelFor(model => model.Marca)
+                    @Html.TextBoxFor(model => model.Marca, new { @class = "form-control" })
+                </div>
+                <div class="col-md-6 form-group">
+                    @Html.LabelFor(model => model.Categoria)
+                    @Html.TextBoxFor(model => model.Categoria, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-3">
+                    @Html.Label("Adicionar Peça do Veículo")
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.ObjPecaDoVeiculo, new { @class = "form-control" })
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" id="buscar" data-toggle="modal" data-target="#modalCidadesPorEstado" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-md-6 form-group">
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalPeças" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Cidades</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <a href="#" id="adc" class="btn btn-primary"> Adicionar Peça<i class="glyphicon glyphicon-plus"></i></a>
+                    <div id="exibirCidades">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+    {
+    <script>
+        $("#exibirCidades").on("click", "td a", function () {
+            $("#ObjCidade_CidadeId").val($(this).attr("id"));
+            $("#ObjCidade_Nome").val($(this).data("nome"));
+
+            $("#modalCidadesPorEstado").modal("hide");
+        });
+    </script>
+}
